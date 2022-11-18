@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert New Employee</title>
+<script>
+function validateForm() {	
+	if (form.nameInput.value == "") {
+		alert("Please input a name.");
+		form.nameInput.focus();
+		return false;
+	} else if (form.phoneInput.value == "") {
+		alert("Please input a phone number.");
+		form.phoneInput.focus();
+		return false;
+	} else if (form.positionInput.value == "") {
+		alert("Please input a position.");
+		form.positionInput.focus();
+		return false;
+	} else {
+		return true;
+	}		
+}	
+</script>
+</head>
+<body>
+ <form id="form" th:object="${newEmployee}" th:action="@{/update/{id}(id=${newEmployee.id})}" method=POST onsubmit="return validateForm(this)">
+ 
+ Name: <input name="name" id="nameInput" size="20" th:field="*{name}"> <br />
+ Phone Number: <input name="phone" id="phoneInput" size="20" th:field="*{phone}"> <br />
+ Position: <input name="position" id="positionInput" size="20" th:field="*{position}"> <br />
+ Years Employed: <input name="yearsEmployed" size="20" th:field="*{yearsEmployed}"> <br />
+ <input name="submit" type="submit" value="submit" /> 
+ </form>
+<a href="/viewAll">View all Employees</a>
+</body>
+</html> 
